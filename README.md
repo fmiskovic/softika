@@ -4,11 +4,33 @@ Analyze public GitHub repositories for fake traction. Detects artificial stars, 
 
 ## Install
 
+### Homebrew (macOS/Linux)
+
+```bash
+brew tap fmiskovic/tap
+brew install softika
+```
+
+### Go
+
 ```bash
 go install github.com/fmiskovic/softika/cmd/softika@latest
 ```
 
-Or build from source:
+### Shell script (Linux/macOS)
+
+```bash
+VERSION=$(curl -sfL https://api.github.com/repos/fmiskovic/softika/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m); [ "$ARCH" = "x86_64" ] && ARCH="amd64"
+curl -sfL "https://github.com/fmiskovic/softika/releases/download/${VERSION}/softika_${VERSION#v}_${OS}_${ARCH}.tar.gz" | tar xz -C /usr/local/bin softika
+```
+
+### Manual download
+
+Download the binary for your platform from the [releases page](https://github.com/fmiskovic/softika/releases/latest) and place it somewhere in your `PATH`.
+
+### Build from source
 
 ```bash
 git clone https://github.com/fmiskovic/softika.git
@@ -117,7 +139,7 @@ Create a token at https://github.com/settings/tokens — no special scopes neede
 
 ```
 softika/
-├── cmd/softika/main.go              # CLI (Cobra)
+├── cmd/softika/main.go                 # CLI (Cobra)
 ├── internal/
 │   ├── model/types.go               # Domain types
 │   ├── github/client.go             # GitHub API client wrapper

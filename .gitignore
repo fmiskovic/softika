@@ -1,6 +1,3 @@
-# Binary
-softika
-
 # Test/coverage
 coverage.out
 *.test
@@ -17,3 +14,6 @@ Thumbs.db
 
 # GoReleaser
 dist/
+
+# Binary (root only, not cmd/softika/ directory)
+/softika

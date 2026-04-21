@@ -26,6 +26,15 @@ archives:
 checksum:
   name_template: 'checksums.txt'
 
+brews:
+  - repository:
+      owner: fmiskovic
+      name: homebrew-tap
+      token: "{{ .Env.GH_PAT }}"
+    homepage: https://github.com/fmiskovic/softika
+    description: Analyze GitHub repos for fake traction
+    license: AGPL-3.0
+
 changelog:
   sort: asc
   filters:
